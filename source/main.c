@@ -18,13 +18,11 @@ int main(){
 	char message[] = "Hello\n";
 	char message2[] = "World\n";
 	led_init();
-	USART2_init(9600);
-	dma_usart2_init();
-	usart2_enable_dma();
-	dma_usart2_start("\nSystem ready!\n");
+	dma_and_usart2_init(9600);
+	dma_usart2_puts("\nSystem ready!\n");
 	while(1){
-		dma_usart2_start(message);
-		dma_usart2_start(message2);
+		dma_usart2_puts(message);
+		dma_usart2_puts(message2);
 		delay_ms(1000);
 	}
 }

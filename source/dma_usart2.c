@@ -5,7 +5,13 @@
 
 volatile int dma_usart2_tx_complete = 0;
 
-void dma_usart2_init(void){
+void dma_and_usart2_init(int baudrate){
+	USART2_init(baudrate);
+	dma_channel_usart2_init();
+	usart2_enable_dma();
+}
+
+void dma_channel_usart2_init(void){
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1,ENABLE);
 	DMA_InitTypeDef myDMA;
 	DMA_StructInit(&myDMA);
@@ -42,13 +48,16 @@ void DMA1_Channel7_IRQHandler(void){
 	dma_usart2_tx_complete = 1;
 }
 
-void dma_usart2_start(const char* pString){
+void dma_usart2_puts(const char* pString){
 	int strSize = strlen(pString);
+	dma_usart2_nputs(pString, strSize);
+}
 
+void dma_usart2_nputs(const char* pString, int stringSize){
 	DMA_Cmd(DMA1_Channel7, DISABLE);
 	DMA_ClearFlag(DMA1_FLAG_TC7);
 	DMA1_Channel7->CMAR =(uint32_t) pString;
-	DMA_SetCurrDataCounter(DMA1_Channel7, strSize);
+	DMA_SetCurrDataCounter(DMA1_Channel7, stringSize);
 
 	USART_ClearFlag(USART2, USART_FLAG_TC);
 	DMA_ClearFlag(DMA1_FLAG_TC7);
