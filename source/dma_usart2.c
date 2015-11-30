@@ -43,11 +43,6 @@ void dma_usart2_irq_disable(){
 	DMA_ITConfig(DMA1_Channel7,DMA_IT_TC,DISABLE);
 }
 
-void DMA1_Channel7_IRQHandler(void){
-	DMA_ClearITPendingBit(DMA1_IT_TC7);
-	dma_usart2_tx_complete = 1;
-}
-
 void dma_usart2_puts(const char* pString){
 	int strSize = strlen(pString);
 	dma_usart2_nputs(pString, strSize);
@@ -65,8 +60,25 @@ void dma_usart2_nputs(const char* pString, int stringSize){
 
 	dma_usart2_irq_enable();
 	DMA_Cmd(DMA1_Channel7,ENABLE);
+}
 
+void dma_usart2_waitUntilComplete(void){
 	while(dma_usart2_tx_complete == 0);
-
 	dma_usart2_irq_disable();
 }
+
+void __attribute__((weak)) dma_usart2_tx_callback(void){
+}
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+void DMA1_Channel7_IRQHandler(void){
+	DMA_ClearITPendingBit(DMA1_IT_TC7);
+	dma_usart2_tx_complete = 1;
+	dma_usart2_tx_callback();
+}
+#ifdef __cplusplus
+}
+#endif
+

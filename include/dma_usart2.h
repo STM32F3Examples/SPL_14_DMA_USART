@@ -19,9 +19,12 @@ void dma_usart2_puts(const char* pString);
 
 void dma_usart2_nputs(const char* pString, int stringSize);
 
+void dma_usart2_waitUntilComplete(void);
+
+void dma_usart2_tx_callback(void);
+
 #ifdef __cplusplus
 }
 #endif
-
 
 #endif// _DMA_USART2_H

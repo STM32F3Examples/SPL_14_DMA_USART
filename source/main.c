@@ -20,9 +20,12 @@ int main(){
 	led_init();
 	dma_and_usart2_init(9600);
 	dma_usart2_puts("\nSystem ready!\n");
+	dma_usart2_waitUntilComplete();
 	while(1){
 		dma_usart2_puts(message);
+		dma_usart2_waitUntilComplete();
 		dma_usart2_puts(message2);
+		dma_usart2_waitUntilComplete();
 		delay_ms(1000);
 	}
 }
