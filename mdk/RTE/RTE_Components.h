@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'Cpp_08_SyncHardware' 
+ * Project: 'SPL_14_DMA_USART' 
  * Target:  'Target 1' 
  */
 

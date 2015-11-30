@@ -47,7 +47,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>Cpp_08_SyncHardware</OutputName>
+          <OutputName>SPL_14_DMA_USART</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -409,11 +409,6 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>main.cc</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\source\main.cc</FilePath>
-            </File>
-            <File>
               <FileName>SPL_STM32F302x8.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\STM32F30x_StdPeriph_Driver\SPL_STM32F302x8.lib</FilePath>
@@ -429,24 +424,19 @@
               <FilePath>..\source\safe_stdlib.c</FilePath>
             </File>
             <File>
-              <FileName>MainApp.cc</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\source\MainApp.cc</FilePath>
-            </File>
-            <File>
-              <FileName>SyncSerial_stm32f3.cc</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\source\SyncSerial_stm32f3.cc</FilePath>
-            </File>
-            <File>
-              <FileName>SerialStream.cc</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\retarget\source\SerialStream.cc</FilePath>
-            </File>
-            <File>
               <FileName>retarget_stm32f3.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\retarget\source\retarget_stm32f3.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>serial_stdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\retarget\source\serial_stdio.c</FilePath>
             </File>
           </Files>
         </Group>
